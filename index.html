@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>
+    <style>
+
+
+        /* * {
+            border: solid 1px blue;
+        } */
+        body {
+            font-family: 'Source Sans Pro';
+            background-color: black;
+            color: white;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .text {
+            font-size: 1.25rem;
+        }
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        #container {
+            width: 100vw;
+            height: 500px;
+            overflow: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: red;
+            flex-wrap: wrap;
+            transition: background-color 0.7s ease;
+            border-radius: 8px;
+            margin: 0 20px;
+        }
+
+        .bildKontainer {
+            width: 40%;
+            height: 90%;
+            padding: 15px 0;
+        }
+        #bild-ett {
+            padding-top: 30px;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .textAreaRight {
+            width: 40%;
+            height: 90%;
+            display: flex;
+            padding: 15px 0;
+            flex-direction: column;
+        }
+        #text-ett {
+            padding-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="container-custom">
+        <div class="bildKontainer" id="bild-ett">
+            <img src="1.png" alt="" class="bild" >
+        </div>
+        <div class="textAreaRight">
+            <p class="counter">01/04</p>
+            <h2>E-Handel</h2>
+            <p class="text" id="text-ett">Eftersom vår expertis ligger inom e-handel, är det självklart att det är här vi skiner. Vi skapar hemsidor som säljer, vi konverteringsoptimerar er hemsida med hälp av data insamlad från er webbplats. Vi optimerar även kontinuerligt er hemsida för SEO (sökmotoroptimering) sả att era blivande kunder hittar er, inte era konkurrenter.</p>
+        </div>
+
+        <div class="bildKontainer">
+            <img src="2.png" alt="" class="bild">
+        </div>
+        <div class="textAreaRight">
+            <p class="counter"></p>
+            <h2>Webbutveckling</h2>
+            <p class="text"></p>
+        </div>
+
+        <div class="bildKontainer">
+            <img src="3.png" alt="" class="bild">
+        </div>
+        <div class="textAreaRight">
+            <p class="counter"></p>
+            <h2>UI/UX-Design</h2>
+            <p class="text"></p>
+        </div>
+        
+        <div class="bildKontainer">
+            <img src="4.png" alt="" class="bild">
+        </div>
+        <div class="textAreaRight">
+            <p class="counter"></p>
+            <h2>Digital Marknadsföring</h2>
+            <p class="text"></p>
+        </div>
+    </div>
+    
+    <script>
+        let box = document.getElementById("container")
+        let textFields = document.getElementsByClassName("text")
+        let images = document.getElementsByClassName("bild")
+        let counter = document.getElementsByClassName("counter")
+    
+        box.addEventListener("scroll", function() {
+            let scrollProcent = (box.scrollTop / (box.scrollHeight - box.clientHeight)) * 100
+    
+            for(let i = 0; i < textFields.length; i++) {
+                if (scrollProcent < 30) {
+                    box.style = "background-color: #DC3948;"
+                    textFields[i].innerHTML = "Eftersom vår expertis ligger inom e-handel, är det självklart att det är här vi skiner. Vi skapar hemsidor som säljer, vi konverteringsoptimerar er hemsida med hälp av data insamlad från er webbplats. Vi optimerar även kontinuerligt er hemsida för SEO (sökmotoroptimering) sả att era blivande kunder hittar er, inte era konkurrenter."
+                    counter[i].innerHTML = "01/04"
+                } else if (scrollProcent < 55) {
+                    box.style = "background-color: #114ECD;"
+                    textFields[i].innerHTML = "Självklart besitter vi bred kunskap inom webbutveckling, vilket gör att ni kan känna er trygga med oss som partner. På grund av detta kan vi erbjuda skräddarsydda lösningar som passar just ditt företag"
+                    counter[i].innerHTML = "02/04"
+                } else if (scrollProcent < 80) {
+                    box.style = "background-color: #368635;"
+                    textFields[i].innerHTML = "En webbplats skall självklart vara funktionell, men den måste även vara enkel att navigera och optimeras till minsta detalj. Vi skapar inte bara hemsidor, vi skapar en plattform för företag att nå en bredare marknad och samtidigt öka er försäljning. Självklart skall hemsidan vara fin att kolla på också, men det tar ni nog för givet!"
+                    counter[i].innerHTML = "03/04"
+                } else if (scrollProcent < 105) {
+                    box.style = "background-color: #FEDB57;"
+                    textFields[i].innerHTML = "Syns man inte, så finns man inte. Lite väl uttjatat begrepp men det stämmer så väl in på samtiden idag. Vi hjälper er att ranka högt på Google, nå ut till era kunder samt kägga grunden för en starkare digital närvaro."
+                    counter[i].innerHTML = "04/04"
+                }
+
+                // Decrease opacity of each image individually
+                let sectionProcent = 150 / images.length
+                let currentSection = Math.floor(scrollProcent / sectionProcent)
+                if (i === currentSection) {
+                    images[i].style.opacity = 1 - (scrollProcent % sectionProcent) / sectionProcent
+                } else if (i < currentSection) {
+                    images[i].style.opacity = 0
+                } else {
+                    images[i].style.opacity = 1
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
